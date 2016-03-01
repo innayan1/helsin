@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans     xmlns="http://www.springframework.org/schema/beans"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+           default-autowire="constructor">
+  <bean id="InspectionsMessageProcessorFactory" class="jetbrains.buildServer.runner.codeInspection.InspectionsMessageProcessorFactory"/>
+  <bean id="inspectionDataFetcher" class="jetbrains.buildServer.runner.codeInspection.InspectionDataFetcher" init-method="register"/>
+  <bean id="projectInspectionDataFetcher" class="jetbrains.buildServer.runner.codeInspection.ProjectInspectionsXmlRpcHandler"/>
+  <bean id="InspectionDataCleaner" class="jetbrains.buildServer.runner.codeInspection.InspectionDataCleaner"/>
+  <bean id="inspectionRunType" class="jetbrains.buildServer.runner.codeInspection.InspectionRunType"/>
+  <bean id="inspectionRunTypeExtension" class="jetbrains.buildServer.runner.codeInspection.InspectionRunTypeExtension"/>
+  <bean id="inspectionFragment" class="jetbrains.buildServer.runner.codeInspection.InspectionPageFragment"/>
+  <bean id="inspectionTab" class="jetbrains.buildServer.runner.codeInspection.InspectionTab"/>
+  <bean id="inspectionFilesController" class="jetbrains.buildServer.runner.codeInspection.InspectionFilesController"/>
+  <bean id="inspectionDetailsController" class="jetbrains.buildServer.runner.codeInspection.InspectionDetailsController"/>
+  <bean id="InspectionStatsValueType" class="jetbrains.buildServer.runner.codeInspection.InspectionStatsValueType"/>
+  <bean id="inspectionsStatusBuilder" class="jetbrains.buildServer.runner.codeInspection.InspectionsStatusBuilder"/>
+
+  <bean id="InspectionssGraphBean" class="jetbrains.buildServer.runner.codeInspection.InspectionsGraph"/>
+
+  <bean class="jetbrains.buildServer.runner.codeInspection.InspectionProfilesFetcher"/>
+
+  <bean id="InspectionStatsWebExtension"
+        class="jetbrains.buildServer.web.openapi.SimplePageExtension"
+    init-method="register">
+    <property name="placeId" value="BUILD_CONF_STATISTICS_FRAGMENT"/>
+    <property name="pluginName" value="Inspection"/>
+    <property name="includeUrl" value="InspectionStatsGraph.jsp"/>
+  </bean>
+</beans>
